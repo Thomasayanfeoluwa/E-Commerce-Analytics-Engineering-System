@@ -17,7 +17,7 @@ def average_order_value():
     SELECT AVG(grand_total)
     FROM orders
     WHERE status <> 'cancelled'
-    ORDER BY grand_total
+    ORDER BY grand_total;
     """)
 
 def repeated_purchase_rate():
@@ -25,7 +25,11 @@ def repeated_purchase_rate():
     WITH order_count AS (
     SELECT
         user_id, COUNT(*) AS n_orders
+    FROM orders
+    WHERE status NOT IN ('cancelled')
+    GROUP BY user_id
     )
-
-
+    SELECT
+        COUNT(*) FILTER (WHERE n_orders > 1)::float / COUNT(*) AS repeated_rate
+    FROM orders;
     """)
