@@ -6,6 +6,7 @@ def monthly_revenue():
         DATE_TRUNC('month', ordered_at) AS month,
         SUM(grand_total) AS revenue
     FROM orders
+    WHERE status != 'cancelled' 
     GROUP BY 1
     ORDER BY 1;
     """)
@@ -13,5 +14,18 @@ def monthly_revenue():
 
 def average_order_value():
     return run_sql("""
-    SELECT AVG()
+    SELECT AVG(grand_total)
+    FROM orders
+    WHERE status <> 'cancelled'
+    ORDER BY grand_total
+    """)
+
+def repeated_purchase_rate():
+    return run_sql("""
+    WITH order_count AS (
+    SELECT
+        user_id, COUNT(*) AS n_orders
+    )
+
+
     """)
