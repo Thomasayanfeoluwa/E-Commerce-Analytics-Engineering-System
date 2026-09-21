@@ -5,6 +5,13 @@ def monthly_revenue():
     SELECT 
         DATE_TRUNC('month', ordered_at) AS month,
         SUM(grand_total) AS revenue
+    FROM orders
     GROUP BY 1
     ORDER BY 1;
+    """)
+
+
+def average_order_value():
+    return run_sql("""
+    SELECT AVG()
     """)
