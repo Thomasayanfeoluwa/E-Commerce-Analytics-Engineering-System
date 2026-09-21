@@ -31,5 +31,5 @@ def repeated_purchase_rate():
     )
     SELECT
         COUNT(*) FILTER (WHERE n_orders > 1)::float / COUNT(*) AS repeated_rate
-    FROM orders;
+    FROM order_count;
     """)

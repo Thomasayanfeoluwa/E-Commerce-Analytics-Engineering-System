@@ -1,0 +1,18 @@
+[project]
+name = "e-commerce-analytics-engineering-system"
+version = "0.1.0"
+description = "E-Commerce Analytics Engineering System"
+requires-python = ">=3.11"
+dependencies = [
+    "pandas",
+    "python-dotenv",
+    "numpy",
+    "matplotlib",
+    "seaborn",
+    "sqlalchemy",
+    "psycopg[binary]",
+    "pytest",
+    "ipykernel",
+    "tabulate",
+    "python-dateutil>=2.9.0.post0",
+]
