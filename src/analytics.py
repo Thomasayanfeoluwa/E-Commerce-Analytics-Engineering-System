@@ -132,3 +132,13 @@ def top_product_by_category():
     ORDER BY c.name, units_sold DESC;
     """)
 
+def customer_inactivity(days: int = 90):
+    return run_sql("""
+    SELECT
+        user_id
+        MAX(ordered_at) AS last_order
+    FROM orders
+    WHERE status NOT IN ('cancelled')
+    GROUP BY user_id
+    HAVING MAX(ordered_at) < NOW() - INTERVAL '{days} days';
+    """)
