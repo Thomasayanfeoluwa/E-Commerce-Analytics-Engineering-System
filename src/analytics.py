@@ -51,3 +51,15 @@ def return_rate():
         COUNT(*) FILTER (WHERE status = 'returned')::float / COUNT(*) AS returned_rate
     FROM orders
     """)
+
+def product_ranking():
+    return run_sql("""
+    SELECT product_name, SUM(qty) AS unit_sold,
+        SUM(qty * unit_price) AS revenue
+    FROM order_items
+    GROUP BY product_name
+    ORDER BY revenue DESC;
+    """)
+
+def retension():
+    
