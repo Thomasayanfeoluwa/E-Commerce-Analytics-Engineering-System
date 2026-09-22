@@ -20,7 +20,12 @@ def check_order_total_match_items():
             o.discount_total,
             o.shipping_total
         HAVING ABS(
-            o.grand_total -
+            o.grand_total - (
+                SUM(oi.line_total)
+                - o.discount_total
+                + o.shipping_total
             )
-                
+        ) > 0.01;
     """)
+    return mismatches
+
