@@ -53,12 +53,17 @@ def return_rate():
 
 def product_ranking():
     return run_sql("""
-        SELECT product_name, SUM(qty) AS unit_sold,
-            SUM(qty * unit_price) AS revenue
-        FROM order_items
-        GROUP BY product_name
+        SELECT
+            oi.product_name,
+            SUM(oi.qty) AS unit_sold,
+            SUM(oi.line_total) AS revenue
+        FROM order_items AS oi
+        JOIN orders AS o
+            ON o.order_id = oi.order_id
+        WHERE o.status <> 'cancelled'
+        GROUP BY oi.product_name
         ORDER BY revenue DESC;
-        """)
+    """)
 
 
 def revenue_by_country():

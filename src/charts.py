@@ -15,7 +15,7 @@ def plot_monthly_revenue():
     plt.close()
 
 def plot_top_products():
-    df = analytics.product_ranking().head(10)
+    df = analytics.product_ranking().head(10).sort_values("revenue", ascending=True)
     plt.figure(figsize=(10, 5))
     plt.barh(df["product_name"], df["revenue"])
     plt.title("Top 10 Products by Revenue")
