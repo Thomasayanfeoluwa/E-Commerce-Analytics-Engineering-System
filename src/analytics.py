@@ -122,5 +122,13 @@ def top_product_by_category():
         p.name AS category,
         SUM(oi.qty) AS units_sold
     FROM order_items AS oi
-    JOIN product_variants AS 
+    JOIN product_variants AS v
+        ON v.variant_id = p.variant_id
+    JOIN products AS p
+        ON p.product_id = v.product_id
+    JOIN categories AS c
+        ON c.category_id = p.category_id
+    GROUP BY c.name, p.name
+    ORDER BY c.name, units_sold DESC;
     """)
+
