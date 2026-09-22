@@ -135,7 +135,7 @@ def top_product_by_category():
 def customer_inactivity(days: int = 90):
     return run_sql("""
     SELECT
-        user_id
+        user_id,
         MAX(ordered_at) AS last_order
     FROM orders
     WHERE status NOT IN ('cancelled')
