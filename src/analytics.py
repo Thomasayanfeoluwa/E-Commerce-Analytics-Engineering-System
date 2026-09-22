@@ -118,4 +118,9 @@ def first_to_second_purchase_interval():
 def top_product_by_category():
     return run_sql("""
     SELECT 
+        c.name AS category,
+        p.name AS category,
+        SUM(oi.qty) AS units_sold
+    FROM order_items AS oi
+    JOIN product
     """)
