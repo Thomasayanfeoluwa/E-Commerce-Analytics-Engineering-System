@@ -14,7 +14,7 @@ def monthly_revenue():
 
 def average_order_value():
     return run_sql("""
-        SELECT AVG(grand_total)
+        SELECT AVG(grand_total) AS aov
         FROM orders
         WHERE status <> 'cancelled'
         ORDER BY grand_total;
