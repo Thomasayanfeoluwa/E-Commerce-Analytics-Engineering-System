@@ -48,10 +48,17 @@ def check_sanity_date():
     return run_sql("""
     SELECT *
     FROM orders
-    WHERE created_at > NOW() OR created_at < '2015-01-01';
+    WHERE created_at > NOW()
+        OR created_at < '2026-08-26';
     """)
 
 def run_all_checks():
     result = {
-        ""
+        "order_totals_mismatch": check_order_total_match_items(),
+        "negative_values": check_negative_values(),
+        "null_fks": check_null_foreign_keys(),
+        "bad_dates": check_sanity_date(),
     }
+
+    for name, df in results.items():
+        status = 
