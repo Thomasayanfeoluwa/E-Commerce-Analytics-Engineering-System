@@ -53,7 +53,7 @@ def check_sanity_date():
     """)
 
 def run_all_checks():
-    result = {
+    results = {
         "order_totals_mismatch": check_order_total_match_items(),
         "negative_values": check_negative_values(),
         "null_fks": check_null_foreign_keys(),
@@ -61,4 +61,7 @@ def run_all_checks():
     }
 
     for name, df in results.items():
-        status = 
+        status = "PASS" if df.empty else f"FAIL ({len(df)} rows)"
+        print(f"{name}: {status}")
+
+    return results
