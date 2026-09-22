@@ -69,18 +69,18 @@ def revenue_by_country():
             SUM(grand_total) AS revenue
         FROM orders 
         WHERE status <> 'cancelled'
-        GROUP BY 'ship_country_code'
+        GROUP BY ship_country_code
         ORDER BY revenue DESC;
         """)
 
-def retension():
+def retention():
     return run_sql("""
         WITH first_orders AS (
             SELECT user_id,
                 MIN(DATE_TRUNC('month', created_at)) AS cohort_month
             FROM orders
             WHERE status <> 'cancelled'
-            GROUP Y user_id
+            GROUP BY user_id
         ),
         activity AS (
             SELECT
@@ -119,11 +119,11 @@ def top_product_by_category():
     return run_sql("""
     SELECT 
         c.name AS category,
-        p.name AS category,
+        p.name AS product_name,
         SUM(oi.qty) AS units_sold
     FROM order_items AS oi
     JOIN product_variants AS v
-        ON v.variant_id = p.variant_id
+        ON v.variant_id = oi.variant_id
     JOIN products AS p
         ON p.product_id = v.product_id
     JOIN categories AS c
@@ -133,7 +133,7 @@ def top_product_by_category():
     """)
 
 def customer_inactivity(days: int = 90):
-    return run_sql("""
+    return run_sql(f"""
     SELECT
         user_id,
         MAX(ordered_at) AS last_order

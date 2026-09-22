@@ -5,7 +5,7 @@ def check_order_total_match_items():
         SELECT 
             o.order_id,
             o.grand_total,
-            SUM(oi.line_total) AS items_total
+            SUM(oi.line_total) AS items_total,
             o.discount_total,
             o.shipping_total,
             SUM(oi.line_total)
