@@ -29,3 +29,12 @@ def check_order_total_match_items():
     """)
     return mismatches
 
+def check_negative_values():
+    return run_sql("""
+        SELECT *
+        FROM order_items
+        WHERE qty < 0 OR unit_price < 0;
+    """)
+
+def check_null_foreign_keys():
+    
