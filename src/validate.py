@@ -37,4 +37,21 @@ def check_negative_values():
     """)
 
 def check_null_foreign_keys():
-    
+    return run_sql("""
+    SELECT *
+    FROM orders
+    WHERE user_id IS NULL;
+    """)
+
+
+def check_sanity_date():
+    return run_sql("""
+    SELECT *
+    FROM orders
+    WHERE created_at > NOW() OR created_at < '2015-01-01';
+    """)
+
+def run_all_checks():
+    result = {
+        ""
+    }
