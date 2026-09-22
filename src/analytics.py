@@ -17,7 +17,6 @@ def average_order_value():
         SELECT AVG(grand_total) AS aov
         FROM orders
         WHERE status <> 'cancelled'
-        ORDER BY grand_total;
         """)
 
 
@@ -95,7 +94,7 @@ def retention():
         SELECT 
             cohort_month,
             order_month,
-            COUNT (DISTINCT user_id) AS active_user
+            COUNT(DISTINCT user_id) AS active_users
         FROM activity
         GROUP BY cohort_month, order_month
         ORDER BY cohort_month, order_month;

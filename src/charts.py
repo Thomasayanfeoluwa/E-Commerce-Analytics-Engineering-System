@@ -11,7 +11,7 @@ def plot_monthly_revenue():
     plt.ylabel("Revenue")
     plt.xticks(rotation=45)
     plt.tight_layout()
-    plt.savefig("report/figure/monthly_revenue.png")
+    plt.savefig("reports/figures/monthly_revenue.png")
     plt.close()
 
 def plot_top_products():
@@ -20,5 +20,5 @@ def plot_top_products():
     plt.barh(df["product_name"], df["revenue"])
     plt.title("Top 10 Products by Revenue")
     plt.tight_layout()
-    plt.savefig("report/figures/top_products.png")
+    plt.savefig("reports/figures/top_products.png")
     plt.close()
