@@ -171,6 +171,11 @@ Generated outputs include:
 - `reports/figures/monthly_revenue.png`
 - `reports/figures/top_products.png`
 
+<p align="center">
+  <img src="reports/figures/monthly_revenue.png" alt="Monthly Revenue Trend" width="48%" />
+  <img src="reports/figures/top_products.png" alt="Top Products by Revenue" width="48%" />
+</p>
+
 These charts are simple but useful reports for stakeholders and for validating whether the underlying data and SQL logic look sensible.
 
 ### 7. Testing and quality assurance
